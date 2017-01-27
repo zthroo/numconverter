@@ -86,18 +86,18 @@ def main():
     fin = open(args.file_in_name, 'r')  # creates file in object
     fout = open(args.file_out_name, 'w')  # creates file out object
     num_nums = fin.readline()
-    print(num_nums)
-    fout.write(num_nums + '\n')
+    #print(num_nums)
+    fout.write(num_nums)
 
     if args.conversion_type == "bin2hex":  # read in file, process each line using bin2dec, write to output file
         for line in fin:
-            temp = line
-            list(temp)
-            print(temp)
-            l = int(temp[0])
-            s = temp[2:]
-            ans = bin2hex(l, s)
-            print(ans)
+            temp = line  # temp from line already read by loop
+            list(temp)  # convert temp to list
+            #print(temp)
+            l = int(temp[0])  # get length of number to be converted
+            s = temp[2:]  # get number to be converted
+            ans = bin2hex(l, s) # convert number to hex
+            #print(ans)
             fout.write(ans + '\n')
         return
 
