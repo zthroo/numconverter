@@ -123,7 +123,10 @@ def main():
 
     if args.conversion_type == "dec2hex":  # read in file, process each line using dec2hex, write to output file
         for line in fin:
-            print(line, end='')
+            temp = int(line)
+            ans = dec2hex(temp)  # convert number to hex
+            # print(ans)
+            fout.write(ans + '\n')  # write to outfile
         return
 
 if __name__ == '__main__':
