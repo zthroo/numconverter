@@ -83,27 +83,35 @@ def main():
     parser.add_argument("-fi", "--file_in_name", help="name of the file to take in")  # adds file in name argument
     parser.add_argument("-fo", "--file_out_name", help="name of the file to produce")  # adds file out name  argument
     args = parser.parse_args()  # parse the arguments
-    fin = open(args.fi, 'r')  # creates file in object
-    fout = open(args.fo, 'w')  # creates file out object
+    fin = open(args.file_in_name, 'r')  # creates file in object
+    fout = open(args.file_out_name, 'w')  # creates file out object
     num_nums = fin.readline()
     print(num_nums)
+    fout.write(num_nums + '\n')
 
-    if args.ct == "bin2dec":  # read in file, process each line using bin2dec, write to output file
+    if args.conversion_type == "bin2hex":  # read in file, process each line using bin2dec, write to output file
+        for line in fin:
+            temp = line
+            list(temp)
+            print(temp)
+            l = int(temp[0])
+            s = temp[2:]
+            ans = bin2hex(l, s)
+            print(ans)
+            fout.write(ans + '\n')
+        return
+
+    if args.conversion_type == "hex2bin":  # read in file, process each line using bin2hex, write to output file
         for line in fin:
             print(line, end='')
         return
 
-    if args.ct == "bin2hex":  # read in file, process each line using bin2hex, write to output file
+    if args.conversion_type == "dec2bin":  # read in file, process each line using dec2bin, write to output file
         for line in fin:
             print(line, end='')
         return
 
-    if args.ct == "dec2bin":  # read in file, process each line using dec2bin, write to output file
-        for line in fin:
-            print(line, end='')
-        return
-
-    if args.ct == "dec2hex":  # read in file, process each line using dec2hex, write to output file
+    if args.conversion_type == "dec2hex":  # read in file, process each line using dec2hex, write to output file
         for line in fin:
             print(line, end='')
         return
