@@ -51,7 +51,7 @@ def hex2bin(length, num_str):
     # dict to convert between the hex char and the binary string
     hex_dict = {'0': "0000", '1': "0001", '2': "0010", '3': "0011", '4': "0100", '5': "0101", '6': "0110",
                 '7': "0111", '8': "1000", '9': "1001", 'A': "1010", 'B': "1011", 'C': "1100", 'D': "1101",
-                'E': "1110", 'F': "1111"}
+                'E': "1110", 'F': "1111", '\n': ""}
     ans_string = ""
     for letter in num_str:  # runs through the num_string, adding the nibbles to the ans_string
         ans_string = ans_string + hex_dict[letter]
@@ -103,7 +103,14 @@ def main():
 
     if args.conversion_type == "hex2bin":  # read in file, process each line using bin2hex, write to output file
         for line in fin:
-            print(line, end='')
+            temp = line  # temp from line already read by loop
+            list(temp)  # convert temp to list
+            # print(temp)
+            l = int(temp[0])  # get length of number to be converted
+            s = temp[2:]  # get number to be converted
+            ans = hex2bin(l, s)  # convert number to hex
+            # print(ans)
+            fout.write(ans + '\n')
         return
 
     if args.conversion_type == "dec2bin":  # read in file, process each line using dec2bin, write to output file
