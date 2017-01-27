@@ -59,7 +59,6 @@ def hex2bin(num_str):
 
 # converts decimal to binary
 def dec2bin(num):
-    print(num)
     ans = ""                            #empty answer string
     while num > 0:                      #while loop to produce the binary string
         temp = num % 2                  #find remainder of division by 2
@@ -71,8 +70,9 @@ def dec2bin(num):
 
 # converts decimal to hexadecimal
 def dec2hex(num):
-    return
+    temp = dec2bin(num)                 #converts input to binary
+    length = len(temp)                  #gets length of binary
+    return bin2hex(length, temp)        #converts binary to hex and returns
 
 
-print(dec2bin(156))
-print("blah")
+print(dec2hex(156))
