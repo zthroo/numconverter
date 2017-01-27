@@ -65,7 +65,7 @@ def dec2bin(num):
         temp = num % 2  # find remainder of division by 2
         ans = str(temp) + ans  # add remainder to the beginning of ans
         num = math.floor(num / 2)  # get next number for pass through loop
-        print(ans)
+        #print(ans)
     return ans
 
 
@@ -115,7 +115,10 @@ def main():
 
     if args.conversion_type == "dec2bin":  # read in file, process each line using dec2bin, write to output file
         for line in fin:
-            print(line, end='')
+            temp = int(line)
+            ans = dec2bin(temp)  # convert number to binary
+            # print(ans)
+            fout.write(ans + '\n')  # write to outfile
         return
 
     if args.conversion_type == "dec2hex":  # read in file, process each line using dec2hex, write to output file
