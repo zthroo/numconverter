@@ -98,19 +98,19 @@ def main():
             s = temp[2:]  # get number to be converted
             ans = bin2hex(l, s) # convert number to hex
             #print(ans)
-            fout.write(ans + '\n')
+            fout.write(ans + '\n')  # write to outfile
         return
 
-    if args.conversion_type == "hex2bin":  # read in file, process each line using bin2hex, write to output file
+    if args.conversion_type == "hex2bin":  # read in file, process each line using hex2bin, write to output file
         for line in fin:
             temp = line  # temp from line already read by loop
             list(temp)  # convert temp to list
             # print(temp)
             l = int(temp[0])  # get length of number to be converted
             s = temp[2:]  # get number to be converted
-            ans = hex2bin(l, s)  # convert number to hex
+            ans = hex2bin(l, s)  # convert number to binary
             # print(ans)
-            fout.write(ans + '\n')
+            fout.write(ans + '\n')  # write to outfile
         return
 
     if args.conversion_type == "dec2bin":  # read in file, process each line using dec2bin, write to output file
