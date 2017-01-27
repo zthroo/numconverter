@@ -38,7 +38,7 @@ def bin2hex(length, num_string):
             num_list[i] = "F"
 
     ans_string = "0x"
-    for cell in num_list:
+    for cell in num_list:           #runs through num_list, adding the hex characters to the answer string
         ans_string = ans_string + str(cell)
     return ans_string
 
@@ -52,14 +52,21 @@ def hex2bin(num_str):
                 '7':"0111", '8':"1000", '9':"1001", 'A':"1010", 'B':"1011", 'C':"1100", 'D':"1101",
                 'E':"1110", 'F':"1111"}
     ans_string = ""
-    for letter in num_str:
+    for letter in num_str:      #runs through the num_string, adding the nibbles to the ans_string
         ans_string = ans_string + hex_dict[letter]
     return ans_string
 
 
 # converts decimal to binary
 def dec2bin(num):
-    return
+    print(num)
+    ans = ""                            #empty answer string
+    while num > 0:                      #while loop to produce the binary string
+        temp = num % 2                  #find remainder of division by 2
+        ans = str(temp) + ans           #add remainder to the beginning of ans
+        num = math.floor(num / 2)       #get next number for pass through loop
+        print(ans)
+    return ans
 
 
 # converts decimal to hexadecimal
@@ -67,4 +74,5 @@ def dec2hex(num):
     return
 
 
-print(hex2bin("0xF"))
+print(dec2bin(156))
+print("blah")
