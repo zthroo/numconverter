@@ -38,9 +38,12 @@ def bin2hex(length, num_string):
         if num_list[i] == 15:
             num_list[i] = "F"
 
-    ans_string = "0x"
+    ans_string = ""
     for cell in num_list:  # runs through num_list, adding the hex characters to the answer string
         ans_string = ans_string + str(cell)
+    if ans_string[0] == "0":  # removes unneeded zero at beginning of number if needed
+        ans_string = ans_string[1:]
+    ans_string = "0x" + ans_string  # adds hex prefix
     return ans_string
 
 

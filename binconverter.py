@@ -37,9 +37,12 @@ def bin2hex(length, num_string):
         if num_list[i] == 15:
             num_list[i] = "F"
 
-    ans_string = "0x"
+    ans_string = ""
     for cell in num_list:  # runs through num_list, adding the hex characters to the answer string
         ans_string = ans_string + str(cell)
+    if ans_string[0] == "0":  # removes unneeded zero at beginning of number if needed
+        ans_string = ans_string[1:]
+    ans_string = "0x" + ans_string  # adds hex prefix
     return ans_string
 
 
@@ -50,7 +53,6 @@ def main():
     args = parser.parse_args()  # parse the arguments
     fin = open(args.file_in_name, 'rb')  # creates file in object with read binary mode
     fout = open(args.file_out_name, 'w')  # creates file out object
-    bit_string = ""
     bin_num_nums = ""
     i = 0
     j = 0
@@ -65,9 +67,9 @@ def main():
         i = i + 1
     # print(bin_num_nums)
     num_nums = bin2dec(len(bin_num_nums), bin_num_nums)
-    print(num_nums)
+    # print(num_nums)
     fout.write(str(num_nums) + '\n')
-    while j < (num_nums):
+    while j < num_nums:  # while there are still numbers to process
         i = 0
         k = 0
         size = ""
@@ -89,8 +91,10 @@ def main():
             # print(byte)  # print for debugging
             num = num + byte
             k = k + 1
-        num = bin2hex(len(num), num)
-        fout.write(str(size) + " " +  num + '\n')
+        num = bin2hex(len(num), num)  # convert number to hex
+        fout.write(str(size * 2 + 2) + " " + num + '\n')  # write size and number to file
+        j = j + 1  # increment counter
+
 
 if __name__ == '__main__':
     main()
