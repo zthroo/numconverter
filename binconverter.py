@@ -48,8 +48,15 @@ def main():
     parser.add_argument("-fi", "--file_in_name", help="name of the file to take in")  # adds file in name argument
     parser.add_argument("-fo", "--file_out_name", help="name of the file to produce")  # adds file out name  argument
     args = parser.parse_args()  # parse the arguments
-    fin = open(args.file_in_name, 'r')  # creates file in object
     fout = open(args.file_out_name, 'w')  # creates file out object
+    with open(args.file_in_name, 'rb') as fin:  # creates file in object with read binary mode
+        byte = fin.read(1)
+        while byte:
+            byte = ord(byte)
+            byte = bin(byte)[2:].rjust(8, '0')
+            print (byte)
+            byte = fin.read(1)
+    #num_nums = bin2dec(4, str(fstring[0:3]))
 
 
 if __name__ == '__main__':
