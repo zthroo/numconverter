@@ -49,14 +49,23 @@ def main():
     parser.add_argument("-fo", "--file_out_name", help="name of the file to produce")  # adds file out name  argument
     args = parser.parse_args()  # parse the arguments
     fout = open(args.file_out_name, 'w')  # creates file out object
+    bit_string = ""
+    bin_num_nums = ""
+    i = 0
     with open(args.file_in_name, 'rb') as fin:  # creates file in object with read binary mode
-        byte = fin.read(1)
-        while byte:
-            byte = ord(byte)
-            byte = bin(byte)[2:].rjust(8, '0')
-            print (byte)
-            byte = fin.read(1)
-    #num_nums = bin2dec(4, str(fstring[0:3]))
+        byte = fin.read(1)  # read in one byte
+        while i < 4:  # while there are bytes left in the 4 byte number
+            byte = ord(byte)  # convert byte to int
+            # print(byte)
+            byte = bin(byte)[2:].rjust(8, '0')  # convert int to binary and discard leading 0b
+            # print(byte)  # print for debugging
+            bin_num_nums = byte + bin_num_nums
+            byte = fin.read(1)  # read new byte
+            i = i + 1
+    # print(bit_string)
+    print(bin_num_nums)
+    num_nums = bin2dec(len(bin_num_nums), bin_num_nums)
+    print(num_nums)
 
 
 if __name__ == '__main__':
