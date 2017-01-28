@@ -48,25 +48,49 @@ def main():
     parser.add_argument("-fi", "--file_in_name", help="name of the file to take in")  # adds file in name argument
     parser.add_argument("-fo", "--file_out_name", help="name of the file to produce")  # adds file out name  argument
     args = parser.parse_args()  # parse the arguments
+    fin = open(args.file_in_name, 'rb')  # creates file in object with read binary mode
     fout = open(args.file_out_name, 'w')  # creates file out object
     bit_string = ""
     bin_num_nums = ""
     i = 0
-    with open(args.file_in_name, 'rb') as fin:  # creates file in object with read binary mode
-        byte = fin.read(1)  # read in one byte
+    j = 0
+    # byte = fin.read(1)  # read in one byte
+    while i < 4:  # while there are bytes left in the 4 byte number
+        byte = fin.read(1)  # read new byte
+        byte = ord(byte)  # convert byte to int
+        # print(byte)
+        byte = bin(byte)[2:].rjust(8, '0')  # convert int to binary and discard leading 0b
+        # print(byte)  # print for debugging
+        bin_num_nums = byte + bin_num_nums
+        i = i + 1
+    # print(bin_num_nums)
+    num_nums = bin2dec(len(bin_num_nums), bin_num_nums)
+    print(num_nums)
+    fout.write(str(num_nums) + '\n')
+    while j < (num_nums):
+        i = 0
+        k = 0
+        size = ""
+        num = ""
         while i < 4:  # while there are bytes left in the 4 byte number
+            byte = fin.read(1)  # read new byte
             byte = ord(byte)  # convert byte to int
             # print(byte)
             byte = bin(byte)[2:].rjust(8, '0')  # convert int to binary and discard leading 0b
             # print(byte)  # print for debugging
-            bin_num_nums = byte + bin_num_nums
-            byte = fin.read(1)  # read new byte
+            size = byte + size
             i = i + 1
-    # print(bit_string)
-    print(bin_num_nums)
-    num_nums = bin2dec(len(bin_num_nums), bin_num_nums)
-    print(num_nums)
-
+        size = bin2dec(len(size), size)
+        while k < size:
+            byte = fin.read(1)  # read new byte
+            byte = ord(byte)  # convert byte to int
+            # print(byte)
+            byte = bin(byte)[2:].rjust(8, '0')  # convert int to binary and discard leading 0b
+            # print(byte)  # print for debugging
+            num = num + byte
+            k = k + 1
+        num = bin2hex(len(num), num)
+        fout.write(str(size) + " " +  num + '\n')
 
 if __name__ == '__main__':
     main()
