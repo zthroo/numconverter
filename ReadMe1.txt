@@ -1,0 +1,2 @@
+To run this program, ensure that you have converter.py, and the datafile you wish to process in the
+same folder. Open the command prompt in the folder containing converter.py and the datafile. To run, type: converter.py -ct [conversion type] -fi [file to process] -fo [desired name of output file] and hit enter.

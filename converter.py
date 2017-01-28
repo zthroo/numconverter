@@ -98,7 +98,8 @@ def main():
             s = temp[2:]  # get number to be converted
             ans = bin2hex(l, s) # convert number to hex
             #print(ans)
-            fout.write(ans + '\n')  # write to outfile
+            le = len(ans)
+            fout.write(str(le) + " " + ans + '\n')  # write to outfile
         return
 
     if args.conversion_type == "hex2bin":  # read in file, process each line using hex2bin, write to output file
@@ -110,7 +111,8 @@ def main():
             s = temp[2:]  # get number to be converted
             ans = hex2bin(l, s)  # convert number to binary
             # print(ans)
-            fout.write(ans + '\n')  # write to outfile
+            le = len(ans)
+            fout.write(str(le) + " " + ans + '\n')  # write to outfile
         return
 
     if args.conversion_type == "dec2bin":  # read in file, process each line using dec2bin, write to output file
@@ -118,7 +120,8 @@ def main():
             temp = int(line)
             ans = dec2bin(temp)  # convert number to binary
             # print(ans)
-            fout.write(ans + '\n')  # write to outfile
+            le = len(ans)
+            fout.write(str(le) + " " + ans + '\n')  # write to outfile
         return
 
     if args.conversion_type == "dec2hex":  # read in file, process each line using dec2hex, write to output file
@@ -126,7 +129,8 @@ def main():
             temp = int(line)
             ans = dec2hex(temp)  # convert number to hex
             # print(ans)
-            fout.write(ans + '\n')  # write to outfile
+            le = len(ans)
+            fout.write(str(le) + " " + ans + '\n')  # write to outfile
         return
 
 if __name__ == '__main__':
